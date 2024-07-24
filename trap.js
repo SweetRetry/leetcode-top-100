@@ -6,31 +6,23 @@
  * @return {number}
  */
 const trap = function (height) {
-  const first = height.find((item) => item > 0);
-  let left = first;
-  let right = first;
-
-  const len = height.length;
-  let result = 0;
-  while (right < len) {
-    while (height[right] >= height[right + 1]) {
-      right++;
+  let ans = 0;
+  let left = 0,
+    right = height.length - 1;
+  let leftMax = 0,
+    rightMax = 0;
+  while (left < right) {
+    leftMax = Math.max(leftMax, height[left]);
+    rightMax = Math.max(rightMax, height[right]);
+    if (height[left] < height[right]) {
+      ans += leftMax - height[left];
+      ++left;
+    } else {
+      ans += rightMax - height[right];
+      --right;
     }
-    while (height[right] < height[right + 1]) {
-      right++;
-    }
-    // 找到一个可蓄水区为 left - right
-    if (height[right] >= height[left]) {
-      const sliceArr = height.slice(left, right + 1);
-      // 计算蓄水面积
-      let area = 0;
-
-      result += area;
-    }
-
-    left = right;
   }
-  return result;
+  return ans;
 };
 
-trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]);
+console.log(trap([4, 2, 0, 3, 2, 5]));
