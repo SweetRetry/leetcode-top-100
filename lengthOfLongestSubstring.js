@@ -10,7 +10,7 @@ const lengthOfLongestSubstring = function (s) {
   let result = 0;
   for (let i = 0; i < len; i++) {
     if (i !== 0) {
-      charSet.delete(s.charAt[i]);
+      charSet.delete(s.charAt(i - 1));
     }
     while (right + 1 < len && !charSet.has(s.charAt(right + 1))) {
       charSet.add(s.charAt(right + 1));
