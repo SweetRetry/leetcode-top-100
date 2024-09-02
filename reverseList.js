@@ -6,26 +6,21 @@ const { head } = require("./util/ListNode");
  *     this.next = (next===undefined ? null : next)
  * }
  */
+
 /**
  * @param {ListNode} head
  * @return {ListNode}
  */
 var reverseList = function (head) {
-  if (head === null || head.next === null) return head;
-  while (1) {
-    let p1 = head;
-    let p2 = head.next;
-
-    while (p1.val > p2.val) {
-      p1 = p1.next;
-      p2 = p2.next;
-      if (p2 === null) return head;
-    }
-
-    p1.next = p2.next;
-    p2.next = head;
-    head = p2;
+  let newHead = null;
+  let cur = head;
+  while (cur) {
+    const next = cur.next;
+    cur.next = newHead;
+    newHead = cur;
+    cur = next;
   }
+  return newHead;
 };
 
 console.log(reverseList(head));
