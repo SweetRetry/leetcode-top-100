@@ -4,14 +4,13 @@ function ListNode(val, next) {
   return { val: _val, next: _next };
 }
 
-const list = ListNode(2, ListNode(3, ListNode(4)));
-const head = ListNode(1, list);
-
-// const list = ListNode(1, ListNode(4, ListNode(-2)));
-// const head = ListNode(0, list);
+function RandomListNode(val, next, random) {
+  const listNode = ListNode(val, next);
+  listNode.random = random;
+  return listNode;
+}
 
 module.exports = {
   ListNode,
-  list,
-  head,
+  RandomListNode,
 };
